@@ -77,8 +77,8 @@ public class DefaultConstraintsValidator implements ConstraintsValidator {
 
         try {
             isPathSuitable = switch (type) {
-                case TEXT_FILE -> !entityAlreadyExists(type, path);
-                case ZIP_FILE, FOLDER -> !entityAlreadyExists(EntityType.ZIP_FILE, path) && !entityAlreadyExists(EntityType.FOLDER, path);
+                case TEXT_FILE -> pathUtils.trimAndSplitPath(path).length > 1 && !entityAlreadyExists(type, path);
+                case ZIP_FILE, FOLDER -> pathUtils.trimAndSplitPath(path).length > 1 && !entityAlreadyExists(EntityType.ZIP_FILE, path) && !entityAlreadyExists(EntityType.FOLDER, path);
                 case DRIVE -> pathUtils.trimAndSplitPath(path).length == 1 && !entityAlreadyExists(type, path);
             };
         } catch (Exception e) {

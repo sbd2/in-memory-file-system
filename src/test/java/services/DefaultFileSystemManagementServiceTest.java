@@ -89,6 +89,16 @@ class DefaultFileSystemManagementServiceTest {
     }
 
     @Test
+    void failToCreateFolderWithoutDrive() {
+        assertThrows(IllegalFileSystemOperationException.class, () -> fileSystemManagementService.create(EntityType.FOLDER, "sample", ""));
+    }
+
+    @Test
+    void failToCreateTextFileWithoutDrive() {
+        assertThrows(IllegalFileSystemOperationException.class, () -> fileSystemManagementService.create(EntityType.TEXT_FILE, "letter", ""));
+    }
+
+    @Test
     void failToCreateNewFolderInNonExistentDrive() {
         assertThrows(PathNotFoundException.class, () -> fileSystemManagementService.create(EntityType.FOLDER, "sample", "D:"));
     }

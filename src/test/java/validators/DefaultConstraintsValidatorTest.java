@@ -85,5 +85,7 @@ class DefaultConstraintsValidatorTest {
         assertFalse(validator.isPathSuitableForEntityType(EntityType.DRIVE, "D:\\drive"));
 
         assertFalse(validator.isPathSuitableForEntityType(EntityType.TEXT_FILE, "D:\\example"));
+        assertFalse(validator.isPathSuitableForEntityType(EntityType.FOLDER, "sample"));
+        assertFalse(validator.isPathSuitableForEntityType(EntityType.TEXT_FILE, "letter"));
     }
 }
